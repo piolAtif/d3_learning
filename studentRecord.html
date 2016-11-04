@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Record</title>
+	<link rel="stylesheet" type="text/css" href="css/studentRecordStyle.css">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<div class="container"></div>
+	<div class="optionContainer">
+		Sort by:
+		<button onclick="sortAccordingToName()">Name</button>
+		<button onclick="sortAccordingToSubject()">Subject</button>
+		<button onclick="sortAccordingToScore()">Score</button>
+	</div>
+	<div class="subjectSection"></div>
+
+	<script type="text/javascript" src="javascript/d3.v4.js"></script>
+	<script type="text/javascript" src="javascript/studentRecordVisualization.js"></script>
+</body>
+</html>
