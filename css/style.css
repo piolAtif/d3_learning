@@ -1,0 +1,10 @@
+.container{
+	width: 500px;
+}
+
+.new_div{
+	/*background-color: rgb(70,130,180);*/
+	margin-bottom: 2px;
+	text-align: right;
+	color: white;
+}

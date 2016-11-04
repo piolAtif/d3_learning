@@ -1,0 +1,11 @@
+.states{
+	height: 300px;
+	width: 500px;
+}
+
+.states div{
+	margin-bottom: 2px;
+	text-align: center;
+	border-radius: 20px;
+	height: 20px;
+}
