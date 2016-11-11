@@ -1,0 +1,12 @@
+.container{
+	position: relative;
+}
+
+.container div{
+	display: inline-block;
+	border:1px solid;
+	margin: 4px;
+	text-align: center;
+	vertical-align: top;
+	font-family: georgia,garamond,serif;
+}
