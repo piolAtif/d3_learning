@@ -1,0 +1,24 @@
+.container{
+	height: 100px;
+}
+
+line{
+	stroke:#949494;
+}
+
+circle{
+	stroke:#ff0202;
+}
+
+rect{
+	stroke: #5b90bc;
+}
+
+polygon{stroke:#0e870e;}
+
+
+.content{
+	fill:none;
+	stroke-width:2px;
+}
+
