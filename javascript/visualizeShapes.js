@@ -42,19 +42,16 @@ var drawTriangle = function(){
  	.attr('transform','translate('+0+','+INTIALIZER+')');
 }
 
-var shapes = [{'name':'line','drawShape':drawline},
-			{"name":'circle','drawShape':drawCircle},
-			{'name':'rectangle', 'drawShape':drawRectangle},
-			{'name':'triangle','drawShape':drawTriangle}];
+var shapes = [drawline,drawCircle,drawRectangle,drawTriangle];
 
 
 var transition = function(shape,index){
-	return shape.attr('transform','translate('+index*150+','+yCoordinate+")");
+	return shape.attr('transform','translate('+index*(HEIGHT+INNERHEIGHT)+','+yCoordinate+")");
 }
 
 var drawShape = function(shapes){
 	 shapes.forEach(function(shape,index){
-			transition(shape.drawShape(),index);
+			transition(shape(),index);
 	}) 
 };
 
