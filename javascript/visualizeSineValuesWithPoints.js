@@ -1,14 +1,7 @@
 var points = [{'x':0,'y':5},{'x':1,'y':9},{'x':2,'y':7},{'x':3,'y':5},{'x':4,'y':3},{'x':6,'y':4},{'x':7,'y':2},{'x':8,'y':3},{'x':9,'y':2}];
 var sineXValue = [{"x":0},{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8},{"x":9}];
 
-var setOfCurves = [{'curveTitle':'curveLinear', 'd3Curve':d3.curveLinear},
-	{'curveTitle':'curveLinearClosed', 'd3Curve':d3.curveLinearClosed},
-	{'curveTitle':'curveStepAfter', 'd3Curve':d3.curveStepAfter},
-	{'curveTitle':'curveBasis', 'd3Curve':d3.curveBasis},
-	{'curveTitle':'curveBundle', 'd3Curve':d3.curveBundle},
-	{'curveTitle':'curveCardinalClosed', 'd3Curve':d3.curveCardinalClosed},
-	{'curveTitle':'curveCardinal', 'd3Curve':d3.curveCardinal},
-	{'curveTitle':'curveMonotoneX', 'd3Curve':d3.curveMonotoneX}]
+var setOfCurves = ['curveLinear','curveLinearClosed','curveStepAfter','curveBasis','curveBundle','curveCardinalClosed','curveCardinal','curveMonotoneX'];
 
 var xScale = d3.scaleLinear()
 	.domain([0,1.0])
@@ -45,6 +38,18 @@ var converter = function(operation,setOfElements){
 	});
 }
 
+var change = function(){
+	drawLinesWithCircles(d3.select('select').property('value'));
+}
+
+var drawDropDownList = d3.select('#interpolate')
+	.on("change",change)
+	.selectAll('option')
+	.data(setOfCurves)
+	.enter().append('option')
+	.attr("value",function(d){return d})
+	.text(function(d){return d});	
+
 var drawPath = function(data, curveShape){
 	svg.append('path')
 	.datum(data)
@@ -68,19 +73,25 @@ var drawCircles = function(data){
 	.attr("r",3);
 };
 
-var drawOnlyLines = function(){
+
+var drawOnlyLines = function(curveShape){
 	d3.selectAll('circle').remove();
-	drawPath(converter(valuesAfterDivideBy10,points),d3.curveBundle);
-	drawPath(converter(modifiedSineValues,sineXValue),d3.curveBundle);
+	d3.selectAll('path.lineContainer').remove();
+	drawPath(converter(valuesAfterDivideBy10,points),d3[curveShape]);
+	drawPath(converter(modifiedSineValues,sineXValue),d3[curveShape]);
 }
 
-var drawLinesWithCircles = function(){
-	drawOnlyLines();
+var drawLinesWithCircles = function(curve){
+	drawOnlyLines(curve);
 	drawCircles(converter(modifiedSineValues,sineXValue));
 	drawCircles(converter(valuesAfterDivideBy10,points));
 } 
 
-window.onload = drawLinesWithCircles();
+window.onload = function(){
+	drawDropDownList;
+	drawOnlyLines('curveLinear');
+
+}
 
 
 
