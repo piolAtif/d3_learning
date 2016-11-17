@@ -45,23 +45,14 @@ var drawPath = function(data){
 	.attr("stroke-width","2")
 	.attr("fill","none")
 	.attr('stroke','black')
-	.attr('transform','translate('+31+','+11+')');
-}
-
-var drawCircles = function(data){
-	var group = svg.append('g').attr('transform','translate('+30+','+10+')')
-	group.selectAll('circle').data(data)
-	.enter().append('circle')
-	.attr("cx",function(d){return xScale(d.x)})
-	.attr("cy",function(d){return yScale(d.y)})
-	.attr("r",3);
+	.attr('transform','translate('+31+','+11+')')
+	.attr('class','lineContainer');
 }
 
 var sineXValue = [{"x":0},{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8},{"x":9}];
 drawPath(converter(valuesAfterDivideBy10,points));
-drawCircles(converter(valuesAfterDivideBy10,points));
 drawPath(converter(modifiedSineValues,sineXValue));
-drawCircles(converter(modifiedSineValues,sineXValue));
+
 
 
 
