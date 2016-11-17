@@ -50,6 +50,24 @@ var drawPath = function(data){
 	.attr('class','lineContainer');
 }
 
+var drawCircles = function(data){
+	var group = svg.append('g').attr('transform','translate('+30+','+10+')')
+	group.selectAll('circle').data(data)
+	.enter().append('circle')
+	.attr("cx",function(d){return xScale(d.x)})
+	.attr("cy",function(d){return yScale(d.y)})
+	.attr("r",3);
+};
+
+var drawOnlyLines = function(){
+	drawPath(converter(valuesAfterDivideBy10,points));
+	drawPath(converter(modifiedSineValues,sineXValue));
+}
+
+var drawLinesWithCircles = function(){
+	drawCircles(converter(modifiedSineValues,sineXValue));
+	drawCircles(converter(valuesAfterDivideBy10,points));
+} 
 
 window.onload = function(){
 	drawPath(converter(valuesAfterDivideBy10,points));
