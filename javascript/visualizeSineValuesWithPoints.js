@@ -69,10 +69,7 @@ var drawLinesWithCircles = function(){
 	drawCircles(converter(valuesAfterDivideBy10,points));
 } 
 
-window.onload = function(){
-	drawPath(converter(valuesAfterDivideBy10,points));
-	drawPath(converter(modifiedSineValues,sineXValue));
-}
+window.onload = drawOnlyLines();
 
 
 
