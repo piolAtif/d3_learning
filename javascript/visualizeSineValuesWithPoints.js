@@ -15,10 +15,7 @@ var yAxis = d3.axisLeft(yScale);
 var svg = d3.select('body').append('svg').attr("width",600).attr("height",500);
 svg.append('g').call(xAxis).attr('transform','translate('+30+','+420+')');
 svg.append('g').call(yAxis).attr('transform','translate('+30+','+10+')');
-
-var line = d3.line()
-	.x(function(d){return xScale(d.x)})
-	.y(function(d){return yScale(d.y)});
+	
 
 var valuesAfterDivideBy10 = function(entrySet, newEntrySet){
 	newEntrySet.x = entrySet.x/10;
@@ -41,9 +38,12 @@ var converter = function(operation,setOfElements){
 
 var drawPath = function(data){
 	svg.append('path')
-	.attr("d",line(data))
+	.datum(data)
 	.attr("stroke-width","2")
 	.attr("fill","none")
+	.attr("d",d3.line()
+		.x(function(d){return xScale(d.x)})
+		.y(function(d){return yScale(d.y)}))
 	.attr('stroke','black')
 	.attr('transform','translate('+31+','+11+')')
 	.attr('class','lineContainer');
