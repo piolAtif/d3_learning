@@ -1,4 +1,5 @@
 var points = [{'x':0,'y':5},{'x':1,'y':9},{'x':2,'y':7},{'x':3,'y':5},{'x':4,'y':3},{'x':6,'y':4},{'x':7,'y':2},{'x':8,'y':3},{'x':9,'y':2}];
+var sineXValue = [{"x":0},{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8},{"x":9}];
 
 var xScale = d3.scaleLinear()
 	.domain([0,1.0])
@@ -49,9 +50,12 @@ var drawPath = function(data){
 	.attr('class','lineContainer');
 }
 
-var sineXValue = [{"x":0},{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8},{"x":9}];
-drawPath(converter(valuesAfterDivideBy10,points));
-drawPath(converter(modifiedSineValues,sineXValue));
+
+window.onload = function(){
+	drawPath(converter(valuesAfterDivideBy10,points));
+	drawPath(converter(modifiedSineValues,sineXValue));
+}
+
 
 
 
