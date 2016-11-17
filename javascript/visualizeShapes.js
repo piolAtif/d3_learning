@@ -1,4 +1,4 @@
-var svg = d3.select('.container').append('svg').attr("width",600).attr("height",150);
+ var svg = d3.select('.container').append('svg').attr("width",600).attr("height",150);
 const HEIGHT = 100;
 const WIDTH = 100;
 const INNERWIDTH = WIDTH/2;
