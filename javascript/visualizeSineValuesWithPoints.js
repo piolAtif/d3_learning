@@ -50,7 +50,7 @@ var drawDropDownList = d3.select('#interpolate')
 	.attr("value",function(d){return d})
 	.text(function(d){return d});	
 
-var drawPath = function(data, curveShape){
+var drawPath = function(data, curveShape,color){
 	svg.append('path')
 	.datum(data)
 	.attr("stroke-width","2")
@@ -59,7 +59,7 @@ var drawPath = function(data, curveShape){
 		.curve(curveShape)
 		.x(function(d){return xScale(d.x)})
 		.y(function(d){return yScale(d.y)}))
-	.attr('stroke','black')
+	.attr('stroke',color)
 	.attr('transform','translate('+31+','+11+')')
 	.attr('class','lineContainer');
 }
@@ -77,8 +77,8 @@ var drawCircles = function(data){
 var drawOnlyLines = function(curveShape){
 	d3.selectAll('circle').remove();
 	d3.selectAll('path.lineContainer').remove();
-	drawPath(converter(valuesAfterDivideBy10,points),d3[curveShape]);
-	drawPath(converter(modifiedSineValues,sineXValue),d3[curveShape]);
+	drawPath(converter(valuesAfterDivideBy10,points),d3[curveShape],'#427FB2');
+	drawPath(converter(modifiedSineValues,sineXValue),d3[curveShape],'#921010');
 }
 
 var drawLinesWithCircles = function(curve){
