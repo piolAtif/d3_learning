@@ -51,7 +51,7 @@ var drawPath = function(data){
 }
 
 var drawCircles = function(data){
-	var group = svg.append('g').attr('transform','translate('+30+','+10+')')
+	var group = svg.append('g').attr('transform','translate('+31+','+11+')')
 	group.selectAll('circle').data(data)
 	.enter().append('circle')
 	.attr("cx",function(d){return xScale(d.x)})
