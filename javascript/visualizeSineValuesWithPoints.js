@@ -27,7 +27,6 @@ var valuesAfterDivideBy10 = function(entrySet, newEntrySet){
 }
 
 var modifiedSineValues = function(elements, newSetOfElements){
-	console.log(elements);
 	newSetOfElements.x = elements.x/10;
 	newSetOfElements.y = Math.abs((Math.sin(elements.x)/10)+0.5);
 	return newSetOfElements;
@@ -60,6 +59,7 @@ var drawCircles = function(data){
 };
 
 var drawOnlyLines = function(){
+	d3.selectAll('circle').remove();
 	drawPath(converter(valuesAfterDivideBy10,points));
 	drawPath(converter(modifiedSineValues,sineXValue));
 }
