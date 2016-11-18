@@ -46,11 +46,15 @@ var converter = function(operation,setOfElements){
 }
 
 var change = function(){
-	drawLinesWithCircles(d3.select('#interpolate').property('value'));
+	var value = d3.select('#interpolate').property('value');
+	drawOnlyLines(d3[value],'#427FB2');
+	drawLineWithSineValues(d3[value], '#921010');
 }
 
 var changeLineTension = function(){
-	drawSineValueLines(d3.select('#lineTension').property('value'))
+	removePreviousElement();
+	var value = d3.select('#lineTension').property('value');
+	drawLineWithSineEvaluateValues(d3['curveCardinal'].tension(+value),'#427FB2');
 }
 
 var drawDropDownList = d3.select('#interpolate')
@@ -75,8 +79,7 @@ var drawPath = function(data, curveShape,color){
 	.datum(data)
 	.attr("stroke-width","2")
 	.attr("fill","none")
-	.attr("d",d3.line()
-		.curve(curveShape)
+	.attr("d",d3.line().curve(curveShape)
 		.x(function(d){return xScale(d.x)})
 		.y(function(d){return yScale(d.y)}))
 	.attr('stroke',color)
@@ -94,29 +97,30 @@ var drawCircles = function(data){
 };
 
 
-var drawOnlyLines = function(curveShape){
+var removePreviousElement = function(){
 	d3.selectAll('circle').remove();
 	d3.selectAll('path.lineContainer').remove();
-	drawPath(converter(valuesAfterDivideBy10,points),d3[curveShape],'#427FB2');
-	drawPath(converter(modifiedSineValues,sineXValue),d3[curveShape],'#921010');
 }
 
-var drawLinesWithCircles = function(curve){
-	drawOnlyLines(curve);
-	drawCircles(converter(modifiedSineValues,sineXValue));
+var drawOnlyLines = function(curve,color){
+	removePreviousElement();
+	drawPath(converter(valuesAfterDivideBy10,points),curve,color);
 	drawCircles(converter(valuesAfterDivideBy10,points));
+}
+
+var drawLineWithSineValues = function(curve,color){
+	drawPath(converter(modifiedSineValues,sineXValue),curve,color);
+	drawCircles(converter(modifiedSineValues,sineXValue));
+}
+
+var drawLineWithSineEvaluateValues = function(curve, color){
+	drawPath(converter(sineValues,sineXValue),curve,color);
+	drawCircles(converter(sineValues,sineXValue));	
 } 
 
-var drawSineValueLines = function(value){
-		d3.selectAll('path.lineContainer').remove();
-		drawPath(converter(sineValues,sineXValue),d3['curveCardinal'].tension(+value),'#427FB2');
-		drawCircles(converter(sineValues,sineXValue));	
-}
-
 window.onload = function(){
-	drawDropDownList;
-	drawOnlyLines('curveLinear');
-
+	drawOnlyLines(d3['curveLinear'],'#427FB2');
+	drawLineWithSineValues(d3['curveLinear'],'#427FB2');
 }
 
 
