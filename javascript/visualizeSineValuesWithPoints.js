@@ -31,6 +31,12 @@ var modifiedSineValues = function(elements, newSetOfElements){
 	return newSetOfElements;
 }
 
+var sineValues = function(elements, newSetOfElements){
+	newSetOfElements.x = elements.x/10;
+	newSetOfElements.y = (Math.sin(3*elements.x)+1)/2;
+	return newSetOfElements;
+}
+
 var converter = function(operation,setOfElements){
 	return setOfElements.map(function(element){
 		var newElementSet = {};
@@ -86,6 +92,12 @@ var drawLinesWithCircles = function(curve){
 	drawCircles(converter(modifiedSineValues,sineXValue));
 	drawCircles(converter(valuesAfterDivideBy10,points));
 } 
+
+var drawSineValueLines = function(){
+	d3.selectAll('path.lineContainer').remove();
+	drawPath(converter(sineValues,sineXValue),d3['curveLinear'],'#427FB2');
+	drawCircles(converter(sineValues,sineXValue));
+}
 
 window.onload = function(){
 	drawDropDownList;
