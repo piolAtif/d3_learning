@@ -2,6 +2,7 @@ var points = [{'x':0,'y':5},{'x':1,'y':9},{'x':2,'y':7},{'x':3,'y':5},{'x':4,'y'
 var sineXValue = [{"x":0},{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8},{"x":9}];
 
 var setOfCurves = ['curveLinear','curveLinearClosed','curveStepAfter','curveBasis','curveBundle','curveCardinalClosed','curveCardinal','curveMonotoneX'];
+var lineTension = [-2,-1.5,-1,0,1];
 
 var xScale = d3.scaleLinear()
 	.domain([0,1.0])
@@ -45,7 +46,11 @@ var converter = function(operation,setOfElements){
 }
 
 var change = function(){
-	drawLinesWithCircles(d3.select('select').property('value'));
+	drawLinesWithCircles(d3.select('#interpolate').property('value'));
+}
+
+var changeLineTension = function(){
+	drawSineValueLines(d3.select('#lineTension').property('value'))
 }
 
 var drawDropDownList = d3.select('#interpolate')
@@ -55,6 +60,15 @@ var drawDropDownList = d3.select('#interpolate')
 	.enter().append('option')
 	.attr("value",function(d){return d})
 	.text(function(d){return d});	
+
+
+var drawDropDownLineTension = d3.select('#lineTension')
+	.on("change",changeLineTension)
+	.selectAll('option')
+	.data(lineTension)
+	.enter().append('option')
+	.attr("value",function(d){return d})
+	.text(function(d){return d});
 
 var drawPath = function(data, curveShape,color){
 	svg.append('path')
@@ -93,10 +107,10 @@ var drawLinesWithCircles = function(curve){
 	drawCircles(converter(valuesAfterDivideBy10,points));
 } 
 
-var drawSineValueLines = function(){
-	d3.selectAll('path.lineContainer').remove();
-	drawPath(converter(sineValues,sineXValue),d3['curveLinear'],'#427FB2');
-	drawCircles(converter(sineValues,sineXValue));
+var drawSineValueLines = function(value){
+		d3.selectAll('path.lineContainer').remove();
+		drawPath(converter(sineValues,sineXValue),d3['curveCardinal'].tension(+value),'#427FB2');
+		drawCircles(converter(sineValues,sineXValue));	
 }
 
 window.onload = function(){
