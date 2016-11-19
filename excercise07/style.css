@@ -1,3 +1,9 @@
 .lineContainer{
 	stroke: #427FB2;
 }
+
+.word{
+	font-size: 11px;
+	fill: darkgray;
+	font-family: sans-serif;
+}

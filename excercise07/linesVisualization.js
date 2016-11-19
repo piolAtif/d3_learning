@@ -13,10 +13,13 @@ var yScale = d3.scaleLinear()
 var xAxis = d3.axisBottom(xScale);
 var yAxis = d3.axisLeft(yScale);
 
+var translate = function(x,y){
+	return `translate(${x},${y})`;
+};
+
 var svg = d3.select('body').append('svg').attr("width",600).attr("height",500);
-svg.append('g').call(xAxis).attr('transform','translate('+30+','+420+')');
-svg.append('g').call(yAxis).attr('transform','translate('+30+','+10+')');
-	
+svg.append('g').call(xAxis).attr('transform',translate(30,420));
+svg.append('g').call(yAxis).attr('transform',translate(30,10));
 
 var valuesAfterDivideBy10 = function(entrySet, newEntrySet){
 	newEntrySet.x = entrySet.x/10;
@@ -39,18 +42,49 @@ var converter = function(operation,setOfElements){
 
 var generateLine = d3.line()
 		.x(function(d){return xScale(d.x)})
-		.y(function(d){return yScale(d.y)});
+		.y(function(d){return yScale(d.y)})
 
 var drawPath = function(data){
-	svg.append('path')
+	return svg.append('path')
 	.attr("d",generateLine(data))
 	.attr("stroke-width","2")
 	.attr("fill","none")
-	.attr('transform','translate('+31+','+11+')')
-	.attr('class','lineContainer');
+	.attr('transform',translate(31,11))
+	.attr('class','lineContainer')
 }
 
+var highestPoints = function(value){
+
+};
+
+var writeText = function(word,[x,y]){
+	svg.append('text')
+		.text(word)
+		.attr('class','word')
+		.attr('transform',translate(x+30,y))
+};
+
+var getHighestValue = function(values){
+	return values.reduce(function(result,d){
+		return result.y > d.y ? result : d;
+	});
+};
+
+var addText = function(value,word){
+	var highestPoints = getHighestValue(value)
+	var xValue = xScale(highestPoints.x);
+	var yValue = yScale(highestPoints.y);
+	writeText(word,[xValue,yValue]);
+};
+
+var textForLine = "line of points (0,5),(1,9),(2,7),(3,5),(4,3),(6,4),(7,2),(8,3),(9,2)";
+var textForSineValuesLine = "sin(x) shifted up by 0.5";
+
 window.onload = function(){
-	drawPath(converter(valuesAfterDivideBy10,points));
-	drawPath(converter(modifiedSineValues,sineXValue));
+	var values = converter(valuesAfterDivideBy10,points);
+	drawPath(values);
+	addText(values,textForLine);
+	var sineValues = converter(modifiedSineValues,sineXValue);
+	var path = drawPath(sineValues);
+	addText(sineValues,textForSineValuesLine);
 }
