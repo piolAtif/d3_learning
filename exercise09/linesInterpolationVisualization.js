@@ -9,13 +9,15 @@ var change = function(){
 	drawLineWithSineValues(d3[value], '#921010');
 }
 
-var drawDropDownList = d3.select('#interpolate')
+var drawDropDownList = function(){
+	d3.select('#interpolate')
 	.on("change",change)
 	.selectAll('option')
 	.data(setOfCurves)
 	.enter().append('option')
 	.attr("value",function(d){return d})
 	.text(function(d){return d});
+}
 
 var drawLinePath = function(data, curveShape,color){
 	svg.append('path')
@@ -41,5 +43,6 @@ drawLineWithSineValues = function(curve, color){
 	drawCircles(converter(modifiedSineValues,sineXValue));
 }
 
+drawDropDownList();
 drawOnlyLine(d3['curveLinear'],'#427FB2');
 drawLineWithSineValues(d3['curveLinear'],'#921010');
