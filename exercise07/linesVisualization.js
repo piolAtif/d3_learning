@@ -70,6 +70,10 @@ var removeWords = function(){
 	d3.selectAll('.word').remove();
 }
 
+var removePaths = function(){
+	d3.selectAll('.lineContainer').remove();
+}
+
 var addText = function(value,word){
 	var highestPoints = getHighestValue(value)
 	var xValue = xScale(highestPoints.x);

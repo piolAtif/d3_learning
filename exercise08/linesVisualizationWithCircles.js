@@ -9,6 +9,10 @@ var drawCircles = function(data){
 	.attr("r",3);
 };
 
+var removeCircles = function(){
+	d3.selectAll('circle').remove();
+}
+
 drawCircles(converter(valuesAfterDivideBy10,points));
 drawCircles(converter(modifiedSineValues,sineXValue));
 
