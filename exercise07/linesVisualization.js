@@ -53,10 +53,6 @@ var drawPath = function(data){
 	.attr('class','lineContainer')
 }
 
-var highestPoints = function(value){
-
-};
-
 var writeText = function(word,[x,y]){
 	svg.append('text')
 		.text(word)
@@ -70,6 +66,10 @@ var getHighestValue = function(values){
 	});
 };
 
+var removeWords = function(){
+	d3.selectAll('.word').remove();
+}
+
 var addText = function(value,word){
 	var highestPoints = getHighestValue(value)
 	var xValue = xScale(highestPoints.x);
@@ -80,11 +80,9 @@ var addText = function(value,word){
 var textForLine = "line of points (0,5),(1,9),(2,7),(3,5),(4,3),(6,4),(7,2),(8,3),(9,2)";
 var textForSineValuesLine = "sin(x) shifted up by 0.5";
 
-window.onload = function(){
-	var values = converter(valuesAfterDivideBy10,points);
-	drawPath(values);
-	addText(values,textForLine);
-	var sineValues = converter(modifiedSineValues,sineXValue);
-	var path = drawPath(sineValues);
-	addText(sineValues,textForSineValuesLine);
-}
+var values = converter(valuesAfterDivideBy10,points);
+drawPath(values);
+addText(values,textForLine);
+var sineValues = converter(modifiedSineValues,sineXValue);
+var path = drawPath(sineValues);
+addText(sineValues,textForSineValuesLine);
