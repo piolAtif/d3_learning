@@ -8,11 +8,16 @@ var svg = d3.select('body').append('svg').attr("width",WIDTH).attr("height",HEIG
 var arc = d3.arc().innerRadius(0).outerRadius(150);
 var pie = d3.pie().value(function(d){return d}).sort(null);
 
-var path = svg.selectAll('path')
+var loadPieChart = function(){
+	svg.selectAll('path')
 	.data(pie(setOfValues)).enter()
 	.append('path')
 	.attr('d',arc)
 	.attr('transform',`translate(${200},${200})`)
 	.attr('fill',function(d, index){return color[index]});
+}
+
+
+loadPieChart();
 
 
