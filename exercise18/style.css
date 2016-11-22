@@ -16,3 +16,9 @@ div{
 .allDetails{
 	visibility: hidden;
 }
+
+button{
+	background-color: lightgrey;
+    border-radius: 5px;
+    border-color: lightgray;
+}
