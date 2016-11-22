@@ -10,9 +10,9 @@ div{
 	text-align: left;
 }
 
-/*.allDetails{
-	visibility: hidden;
-}*/
+.title{
+	position: absolute;
+}
 
 button{
 	background-color: lightgrey;

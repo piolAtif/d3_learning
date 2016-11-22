@@ -1,51 +1,28 @@
 var set = [];
 
 var allDetails = d3.select('body').append('div');
-
 var number = function(data){
-	return allDetails.append('div').text('Number(x):').append('span').attr('class','value').text(data);
-}
-
-var min = function(data){
-	return allDetails.append('div').text('MinOfNumber(min[x]):').append('span').attr('class','value').text(d3.min(data));
-}
-
-var max = function(data){
-	return allDetails.append('div').text('MaxOfNumber(max[x]):').append('span').attr('class','value').text(d3.max(data));
-}
-
-var extent = function(data){
-	return allDetails.append('div').text('Extent of number:').append('span').attr('class','value').text(d3.extent(data));
-}
-
-var sum = function(data){
-	return allDetails.append('div').text('SumOfNumber(∑x):').append('span').attr('class','value').text(d3.sum(data));
-}
-
-var mean = function(data){
-	return allDetails.append('div').text('MeanOfNumber(Ẍ):').append('span').attr('class','value').text(d3.mean(data));
-}
-
-var median = function(data){
-	return allDetails.append('div').text('Median of number(m):').append('span').attr('class','value').text(d3.median(data));
+	return data;
 }
 
 var quantile = function(data){
-	return allDetails.append('div').text('Quantile of 6th number(q6):').append('span').attr('class','value').text(d3.quantile(data,0.6));
+	return d3.quantile(data,0.6);
 }
 
-var variance = function(data){
-	return allDetails.append('div').text('Variance of number(s):').append('span').attr('class','value').text(d3.variance(data));
-}
-
-var deviation = function(data){
-	return allDetails.append('div').text('Deviation of number(𝞂):').append('span').attr('class','value').text(d3.deviation(data));
-}
-
-var setOfOperation = [number,min,max,extent,sum,mean,median,quantile,variance,deviation];
+setOfText = [{title:'Number',method:number},{title:'Min Of Number',method:d3.min},
+	{title:'Max of number',method:d3.max},{title:'Extent of number',method:d3.extent},
+	{title:'SumOfNumber',method:d3.sum},{title:'MeanOfNumber',method:d3.mean},
+	{title:'Median of number',method:d3.median},{title:'Quantile of 6th number',method:quantile},
+	{title:'Variance of number',method:d3.variance},{title:'Deviation of number',method:d3.deviation}
+	];
 
 drawValue =function(data){
-	return setOfOperation.map((operation)=>operation(data));
+	return setOfText.map(function(text){
+		return allDetails.append('div')
+		.append('span').attr('class','title').text(text.title)
+		.append('span').attr('class','value').text(text.method(data));
+	})
+	
 }
 
 var enterData = function(){
