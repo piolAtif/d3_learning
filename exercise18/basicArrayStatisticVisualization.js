@@ -16,7 +16,7 @@ setOfText = [{title:'Number',method:number},{title:'Min Of Number',method:d3.min
 	{title:'Variance of number',method:d3.variance},{title:'Deviation of number',method:d3.deviation}
 	];
 
-drawValue =function(data){
+calculateValue =function(data){
 	return setOfText.map(function(text){
 		var container = allDetails.append('div');
 		container.append('span').attr('class','title').text(text.title);
@@ -29,7 +29,7 @@ drawValue =function(data){
 var showDetail = function(){
 	var values = (document.getElementById('numberValue').value).split(' ');
 	set = values.map((value)=>+value);
-	drawValue(set);
+	calculateValue(set);
 };
 
 
