@@ -21,18 +21,15 @@ drawValue =function(data){
 		return allDetails.append('div')
 		.append('span').attr('class','title').text(text.title)
 		.append('span').attr('class','value').text(text.method(data));
-	})
+	});
 	
-}
-
-var enterData = function(){
-	var values = (document.getElementById('numberValue').value).split(' ');
-	set = values.map((value)=>+value);
-}
+};
 
 var showDetail = function(){
+	var values = (document.getElementById('numberValue').value).split(' ');
+	set = values.map((value)=>+value);
 	drawValue(set);
-}
+};
 
 
 
