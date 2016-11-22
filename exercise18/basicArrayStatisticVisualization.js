@@ -18,9 +18,10 @@ setOfText = [{title:'Number',method:number},{title:'Min Of Number',method:d3.min
 
 drawValue =function(data){
 	return setOfText.map(function(text){
-		return allDetails.append('div')
-		.append('span').attr('class','title').text(text.title)
-		.append('span').attr('class','value').text(text.method(data));
+		var container = allDetails.append('div');
+		container.append('span').attr('class','title').text(text.title);
+		container.append('span').attr('class','value').text(text.method(data));
+		return container;
 	});
 	
 };
