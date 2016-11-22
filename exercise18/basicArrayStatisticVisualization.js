@@ -1,11 +1,5 @@
-var array = [1,2,3,4,5,6,7];
-var string = ["st","nd","rd","th","th","th","th"];
 var set = [];
 
-
-
-
-var body = d3.select('body');
 drawValue =function(data){
 	d3.select('#number').append('span').attr('class','value').text(data);
 	d3.select('#min').append('span').attr('class','value').text(d3.min(data));
