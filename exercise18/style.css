@@ -1,6 +1,6 @@
 div{
-	padding-bottom: 20px;
-	    font-family: monospace;
+	padding-top: 20px;
+	font-family: monospace;
     font-style: oblique;
     font-variant: small-caps;
 }
@@ -11,4 +11,8 @@ div{
 
 .value{
 	margin-left: 300px;
+}
+
+.allDetails{
+	visibility: hidden;
 }
