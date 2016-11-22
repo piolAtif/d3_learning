@@ -7,7 +7,7 @@ var quantile = function(data){
 	return d3.quantile(data,P_QUANTILE);
 }
 
-setOfArrayStatisticMethod = [{title:'Numbers',method:number},{title:'Min Of Numbers',method:d3.min},
+setOfArrayStatisticMethods = [{title:'Numbers',method:number},{title:'Min Of Numbers',method:d3.min},
 	{title:'Max of numbers',method:d3.max},{title:'Extent of numbers',method:d3.extent},
 	{title:'Sum Of Numbers',method:d3.sum},{title:'Mean Of Numbers',method:d3.mean},
 	{title:'Median of numbers',method:d3.median},{title:'Quantile of 6th number',method:quantile},
@@ -15,11 +15,10 @@ setOfArrayStatisticMethod = [{title:'Numbers',method:number},{title:'Min Of Numb
 	];
 
 calculateValue =function(data){
-	return setOfArrayStatisticMethod.map(function(text){
+	setOfArrayStatisticMethods.forEach(function(text){
 		var elementDiv = d3.select('.container').append('div');
 		elementDiv.append('span').attr('class','title').text(text.title);
 		elementDiv.append('span').attr('class','value').text(text.method(data));
-		return elementDiv;
 	});
 	
 };
