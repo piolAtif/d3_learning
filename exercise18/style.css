@@ -1,0 +1,14 @@
+div{
+	padding-bottom: 20px;
+	    font-family: monospace;
+    font-style: oblique;
+    font-variant: small-caps;
+}
+
+.title{
+	position: absolute;
+}
+
+.value{
+	margin-left: 300px;
+}
