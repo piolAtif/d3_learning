@@ -23,7 +23,7 @@ calculateValue =function(data){
 	
 };
 
-var showDetail = function(){
+var showArrayStatistic = function(){
 	var values = (document.getElementById('numberValue').value).split(' ');
 	var set = values.map((value)=>+value);
 	calculateValue(set);
