@@ -1,6 +1,3 @@
-var set = [];
-
-var allDetails = d3.select('body').append('div');
 var number = function(data){
 	return data;
 }
@@ -18,17 +15,17 @@ setOfText = [{title:'Number',method:number},{title:'Min Of Number',method:d3.min
 
 calculateValue =function(data){
 	return setOfText.map(function(text){
-		var container = allDetails.append('div');
-		container.append('span').attr('class','title').text(text.title);
-		container.append('span').attr('class','value').text(text.method(data));
-		return container;
+		var elementDiv = d3.select('.container').append('div');
+		elementDiv.append('span').attr('class','title').text(text.title);
+		elementDiv.append('span').attr('class','value').text(text.method(data));
+		return elementDiv;
 	});
 	
 };
 
 var showDetail = function(){
 	var values = (document.getElementById('numberValue').value).split(' ');
-	set = values.map((value)=>+value);
+	var set = values.map((value)=>+value);
 	calculateValue(set);
 };
 
