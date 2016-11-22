@@ -6,11 +6,11 @@ var quantile = function(data){
 	return d3.quantile(data,0.6);
 }
 
-setOfText = [{title:'Number',method:number},{title:'Min Of Number',method:d3.min},
-	{title:'Max of number',method:d3.max},{title:'Extent of number',method:d3.extent},
-	{title:'SumOfNumber',method:d3.sum},{title:'MeanOfNumber',method:d3.mean},
-	{title:'Median of number',method:d3.median},{title:'Quantile of 6th number',method:quantile},
-	{title:'Variance of number',method:d3.variance},{title:'Deviation of number',method:d3.deviation}
+setOfText = [{title:'Numbers',method:number},{title:'Min Of Numbers',method:d3.min},
+	{title:'Max of numbers',method:d3.max},{title:'Extent of numbers',method:d3.extent},
+	{title:'Sum Of Numbers',method:d3.sum},{title:'Mean Of Numbers',method:d3.mean},
+	{title:'Median of numbers',method:d3.median},{title:'Quantile of 6th number',method:quantile},
+	{title:'Variance of numbers',method:d3.variance},{title:'Deviation of numbers',method:d3.deviation}
 	];
 
 calculateValue =function(data){
